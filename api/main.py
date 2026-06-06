@@ -1,17 +1,10 @@
 from fastapi import FastAPI
-from contextlib import asynccontextmanager
 from api.schemas import PredictRequest, PredictResponse
 from api.predictor import Predictor
 
-predictor = None
+predictor = Predictor()
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    global predictor
-    predictor = Predictor()
-    yield
-
-app = FastAPI(title="Symptom Classifier", lifespan=lifespan)
+app = FastAPI(title="Symptom Classifier")
 
 @app.get("/health")
 def health():
