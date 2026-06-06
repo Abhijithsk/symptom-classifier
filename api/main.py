@@ -2,9 +2,8 @@ from fastapi import FastAPI
 from api.schemas import PredictRequest, PredictResponse
 from api.predictor import Predictor
 
-predictor = Predictor()
-
 app = FastAPI(title="Symptom Classifier")
+predictor = Predictor()
 
 @app.get("/health")
 def health():
